@@ -18,12 +18,11 @@ function doFetchImage(idPersonaje){
         });
 }
 
+//Función para manejar el submit del formulario
 function handleForm(event){
 
     event.preventDefault();
-
     Object.entries(personajes).map(psj => {
-        
         if(psj[1].id === event.target.name.value){
             console.log(psj[1].id);
             doFetchImage(psj[1].id);
