@@ -1,14 +1,19 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
 *{
-    font-family: "FF Mark W05",Arial,sans-serif;
+    font-family: "Open Sans", Arial, sans-serif;
 }
 
 body.fondo {
     background-image: url("./sprites/fondo.jpeg"), url("./sprites/fondo.png");
-    height: 500px;
-    background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
+}
+
+header h1 {
+    color: whitesmoke;
+}
+
+form label {
+    color: whitesmoke;
 }
 
 .psjContainer {

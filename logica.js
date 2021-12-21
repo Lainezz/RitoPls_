@@ -1,5 +1,8 @@
 
+//Variable global que contendrá todos los personajes del LoL. Se seteará al cargar
+//la página, al realizar el primer fetch
 var personajes;
+
 
 function doFetch(){
     fetch('http://ddragon.leagueoflegends.com/cdn/11.24.1/data/es_ES/champion.json')
@@ -7,14 +10,14 @@ function doFetch(){
             .then(data => personajes=data.data);
 }
 
-function doFetchImage(idPersonaje){
+function doFetchImage(namePersonaje){
     
-    console.log("En Fetch de Imagen con psj: "+idPersonaje);
-    fetch("http://ddragon.leagueoflegends.com/cdn/img/champion/splash/"+idPersonaje+"_0.jpg")
+    console.log("En Fetch de Imagen con psj: "+namePersonaje);
+    fetch(`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${namePersonaje}_0.jpg`)
         .then(response => response.blob())
         .then(imageBlob => {
             const imageObjectURL = URL.createObjectURL(imageBlob);
-            crearDivPrueba(imageObjectURL);
+            crearDiv(imageObjectURL);
         });
 }
 
@@ -23,35 +26,36 @@ function handleForm(event){
 
     event.preventDefault();
     Object.entries(personajes).map(psj => {
-        if(psj[1].id === event.target.name.value){
-            console.log(psj[1].id);
-            doFetchImage(psj[1].id);
+        if(psj[1].name === event.target.name.value){
+            console.log(psj[1].name);
+            doFetchImage(psj[1].name);
         }
     });
 }
 
-
-
-function crearDiv(psj){   
-    var elemDivPsjs = document.querySelector("#psjs");
-    
-    var elemDiv = document.createElement("div");
-    elemDiv.setAttribute("id", psj.id);
-    
-    var elemImg = document.createElement("img");
-    elemImg.setAttribute("src", "./sprites/"+psj.image.full);
-    
-    elemDiv.appendChild(elemImg);
-    elemDivPsjs.appendChild(elemDiv);
+//Función para resetear los divs de los personajes. Para que no se acumulen uno 
+//al lado del otro.
+function resetPage(){
+    var divPsjs = document.querySelector("#psjs div");
+    console.log(divPsjs);
+    if(divPsjs!=null){
+        divPsjs.remove();
+    }
 }
 
-function crearDivPrueba(urlImg){
+
+function crearDiv(urlImg){
+    resetPage();
+    
     var divPsjs = document.querySelector("#psjs");
     
+    var divCaja = document.createElement("div");
+
     var elemImg = document.createElement("img");
     elemImg.setAttribute("src", urlImg);
     elemImg.classList.add("imgSize")
-    divPsjs.appendChild(elemImg);
+    divCaja.appendChild(elemImg);
+    divPsjs.appendChild(divCaja);
 }
 
 
