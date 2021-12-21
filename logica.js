@@ -14,7 +14,6 @@ function doFetchImage(idPersonaje){
         .then(response => response.blob())
         .then(imageBlob => {
             const imageObjectURL = URL.createObjectURL(imageBlob);
-            console.log("Blob de la imagen: "+imageObjectURL);
             crearDivPrueba(imageObjectURL);
         });
 }
@@ -22,8 +21,7 @@ function doFetchImage(idPersonaje){
 function handleForm(event){
 
     event.preventDefault();
-    console.log(event);
-    console.log(event.target.name.value);
+
     Object.entries(personajes).map(psj => {
         
         if(psj[1].id === event.target.name.value){
@@ -35,10 +33,7 @@ function handleForm(event){
 
 
 
-function crearDiv(psj){
-    console.log(psj);
-    console.log(psj.id);
-    
+function crearDiv(psj){   
     var elemDivPsjs = document.querySelector("#psjs");
     
     var elemDiv = document.createElement("div");
@@ -52,9 +47,6 @@ function crearDiv(psj){
 }
 
 function crearDivPrueba(urlImg){
-    //var urlImg = doFetchImage(psj.name);
-
-
     var divPsjs = document.querySelector("#psjs");
     
     var elemImg = document.createElement("img");
