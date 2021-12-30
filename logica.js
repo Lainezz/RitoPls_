@@ -1,12 +1,12 @@
 
 /*
-Variable global que contendrá todos los personajes del LoL. Se seteará al cargar
-la página, al realizar el primer fetch
+* Variable global que contendrá todos los personajes del LoL. Se seteará al cargar
+* la página, al realizar el primer fetch
 */
 var personajes;
 
 /*
-Función que inicializa la página. Realiza una petición a la API del Lol para obtener los personajes, rellena el select, etc etc.
+* Función que inicializa la página. Realiza una petición a la API del Lol para obtener los personajes, rellena el select, etc etc.
 */
 async function inicializarPagina() {
     await fetch('http://ddragon.leagueoflegends.com/cdn/11.24.1/data/es_ES/champion.json')
@@ -17,20 +17,20 @@ async function inicializarPagina() {
 }
 
 /*
-Función que realiza un fetch para coger la imagen del personaje indicado
+* Función que realiza un fetch para coger la imagen del personaje indicado
 */
 async function doFetchImage(namePersonaje) {
 
-    let imageObjectURL;
-    await fetch(`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${namePersonaje}_0.jpg`)
+    let imageObjectURL = `./sprites/campeonesMD/${namePersonaje}_0.jpg`;
+    /*await fetch(`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${namePersonaje}_0.jpg`)
         .then(response => response.blob())
         .then(imageBlob => imageObjectURL = URL.createObjectURL(imageBlob));
-    
+    */
     crearDiv(imageObjectURL);
 }
 
 /*
-Función para manejar el submit del formulario
+* Función para manejar el submit del formulario
 */
 function handleForm(event) {
 
@@ -38,26 +38,29 @@ function handleForm(event) {
 
     const inputName = event.target.name.value;
     const optionName = event.target.selectPsjs.value;
+    const optionRol = event.target.selectRol.value;
     let nombrePersonaje = "";
 
     if(inputName !== ""){
         nombrePersonaje = inputName;
     }else if(optionName !== ""){
         nombrePersonaje = optionName;
-    }else if(selectRol !== ""){
+    }else if(optionRol !== ""){
         console.log("Error");
     }
 
     Object.entries(personajes).map(psj => {
         if (psj[1].name === nombrePersonaje) {
-            doFetchImage(psj[1].name);
+            const urlImg = `./sprites/campeonesMD/${nombrePersonaje}_0.jpg`;
+            crearDiv(urlImg);
+            //doFetchImage(psj[1].name);
         }
     });
 }
 
 /*
-Función para resetear los divs de los personajes. Para que no se acumulen uno 
-al lado del otro.
+* Función para resetear los divs de los personajes. Para que no se acumulen uno 
+* al lado del otro.
 */
 function resetPage() {
     var divPsjs = document.querySelector("#psjs div");
@@ -67,7 +70,7 @@ function resetPage() {
 }
 
 /*
-Función para crear un Div que contendrá la imagen de un personaje
+* Función para crear un Div que contendrá la imagen de un personaje
 */
 function crearDiv(urlImg) {
     resetPage();
@@ -81,7 +84,7 @@ function crearDiv(urlImg) {
 }
 
 /*
-Función para rellenar el select del formulario principal que nos sirve para poder seleccionar un personaje
+* Función para rellenar el select del formulario principal que nos sirve para poder seleccionar un personaje
 */
 function populateSelect() {
     var selectPsjs = document.querySelector("#selectPsjs");
