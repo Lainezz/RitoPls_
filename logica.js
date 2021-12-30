@@ -12,6 +12,7 @@ async function inicializarPagina() {
     await fetch('http://ddragon.leagueoflegends.com/cdn/11.24.1/data/es_ES/champion.json')
         .then(response => response.json())
         .then(data => personajes = data.data);
+    console.log(personajes);
     populateSelect();
 }
 
@@ -21,7 +22,7 @@ Función que realiza un fetch para coger la imagen del personaje indicado
 async function doFetchImage(namePersonaje) {
 
     let imageObjectURL;
-    await fetch(`http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${namePersonaje}_0.jpg`)
+    await fetch(`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${namePersonaje}_0.jpg`)
         .then(response => response.blob())
         .then(imageBlob => imageObjectURL = URL.createObjectURL(imageBlob));
     
@@ -43,7 +44,7 @@ function handleForm(event) {
         nombrePersonaje = inputName;
     }else if(optionName !== ""){
         nombrePersonaje = optionName;
-    }else{
+    }else if(selectRol !== ""){
         console.log("Error");
     }
 
@@ -72,12 +73,9 @@ function crearDiv(urlImg) {
     resetPage();
 
     var divPsjs = document.querySelector("#psjs");
-
     var divCaja = document.createElement("div");
-
     var elemImg = document.createElement("img");
     elemImg.setAttribute("src", urlImg);
-    elemImg.classList.add("imgSize")
     divCaja.appendChild(elemImg);
     divPsjs.appendChild(divCaja);
 }

@@ -4,21 +4,7 @@
 }
 
 body.fondo {
-    background-image: url("./sprites/fondo.jpeg"), url("./sprites/fondo.png");
-    background-size: cover;
-}
-
-header h1 {
-    color: whitesmoke;
-}
-
-form label {
-    color: whitesmoke;
-}
-
-.psjContainer {
-    width: 100px;
-    height: 100px;
+    background-color: whitesmoke;
 }
 
 img {
