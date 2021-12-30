@@ -15,27 +15,36 @@
 
     <body class="fondo">
       <div class="container">
-        <header class="container-fluid m-5 text-center">
-            <h1>Seleccion de personaje</h1>
+        <header class="container-fluid p-4 text-center">
+          <h1>Seleccion de personaje</h1>
         </header>
 
-        <div class="d-flex m-5 justify-content-center">
-            <form onsubmit="handleForm(event)" onreset="resetPage()">
-                <div class="d-flex m-3 justify-content-center">
-                  <label for="name" class="mx-3">Nombre</label>
-                  <input id="name" type="text" placeholder="Inserte Nombre del Psj"/>
-                </div>
-                <div class="d-flex m-3 justify-content-evenly">
-                  <button type="submit" class="btn btn-primary">Enviar</button>
-                  <button type="reset" class="btn btn-danger">Reset</button>
-                </div>
-            </form>
-        </div>
-
-        <div id="psjs" class="d-flex m-5 justify-content-center">
+        <div>
+          <form id="mainForm" onsubmit="handleForm(event)" onreset="resetPage()">
+            <div class="row mb-3">
+              <label for="name" class="col-sm-2 col-xs-12 col-form-label">Nombre</label>
+              <div class="col-sm-10 col-xs-12">
+                <input id="name" type="text" class="form-control" placeholder="Inserte Nombre"/>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label for="selectPsjs" class="col-sm-2 col-xs-12 col-form-label">Personajes</label>
+              <div class="col-sm-10 col-xs-12">
+                <select id="selectPsjs" name="selectPsjs" class="form-select">
+                  <option selected value="">Seleccione Personaje</option>
+                </select>
+              </div>
+            </div>
             
-
+            <!--Botonera-->
+            <div class="d-flex justify-content-evenly m-3">
+              <button type="submit" class="btn btn-primary">Enviar</button>
+              <button type="reset" class="btn btn-danger">Reset</button>
+            </div>
+          </form>
         </div>
+
+        <div id="psjs" class="d-flex m-5 justify-content-center"></div>
       </div>
     </body>
 </html>
