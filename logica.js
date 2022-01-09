@@ -14,6 +14,7 @@ async function inicializarPagina() {
         .then(data => personajes = data.data);
     console.log(personajes);
     populateSelect();
+    console.log("Hola");
 }
 
 /*
