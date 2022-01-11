@@ -156,12 +156,12 @@ function crearDiv(urlImg, personaje) {
 }
 
 function playJoke(event){
-    console.log(event.target.id);
+    //console.log(event.target.id);
     new Audio(`./sounds/jokes/${event.target.id}.joke.wav`).play();
 }
 
 function playLaugh(event){
-    console.log(event.target.id);
+    //console.log(event.target.id);
     new Audio(`./sounds/laugh/${event.target.id}.laugh1.wav`).play();
 }
 
