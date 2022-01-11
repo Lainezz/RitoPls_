@@ -14,11 +14,7 @@ async function inicializarPagina() {
         .then(data => personajes = data.data);
     console.log(personajes);
     populateSelect();
-
-    //Aniadimos un evento al formulario
-    let mainForm = document.querySelector("#mainForm");
-    mainForm.addEventListener("submit", handleForm);
-    mainForm.addEventListener("reset", resetPage);
+    console.log("Hola");
 }
 
 /*
@@ -133,8 +129,7 @@ function crearDiv(urlImg, personaje) {
     inputJoke.setAttribute("type", "button");
     inputJoke.classList.add("bolaVerde");
     inputJoke.setAttribute("id", personaje.name);
-    inputJoke.addEventListener("click", playJoke);
-    //inputJoke.setAttribute("onclick", "playJoke(event)");
+    inputJoke.setAttribute("onclick", "playJoke(event)");
     divInfo.appendChild(inputJoke);
 
     let inputRisa = document.createElement("input");
